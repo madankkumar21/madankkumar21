@@ -4,7 +4,7 @@
 
 I was the founding or early sales engineer at four startups: Coactive AI (multimodal AI), Cutover (runbook orchestration), Imply (real-time analytics on Druid) and Alluxio (data orchestration). Before that, I was a big data consultant at Teradata. I work from Philadelphia and New York.
 
-| | |
+| Result | Detail |
 |---|---|
 | **$3.1M** | Largest new logo in Cutover's history: a private bank's disaster-recovery rollout |
 | **83%** | Share of North America new-logo revenue I contributed to at Cutover, FY21–23 |
