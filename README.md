@@ -1,6 +1,6 @@
 # Madan Kumar
 
-**Founding sales engineer for AI and data infrastructure.** I take enterprise deals from first call to production, and I build the evals and agents that prove them.
+**Founding sales engineer for AI and data platforms.** I build the pilots and evals that take enterprise deals from first call to production.
 
 I was the founding or early sales engineer at four startups: Coactive AI (multimodal AI), Cutover (runbook orchestration), Imply (real-time analytics on Druid) and Alluxio (data orchestration). Before that, I was a big data consultant at Teradata. I work from Philadelphia and New York.
 
@@ -37,7 +37,7 @@ These are short case studies from customer work, with customer names removed. Ea
 
 ## What I work with
 
-Agents and evals (Claude Code, MCP servers, LLM and VLM judges, confidence intervals, threshold calibration) · multimodal AI (vision-language models, video and image classification) · data infrastructure (Spark, Druid, Presto, Databricks, OpenSearch, PostgreSQL) · AWS (Certified Solutions Architect) · Python and SQL.
+Agents and evals (Claude Code, MCP servers, LLM and VLM judges, confidence intervals, threshold calibration) · multimodal AI (vision-language models, video and image classification) · data platforms (Spark, Druid, Presto, Databricks, OpenSearch, PostgreSQL) · AWS (Certified Solutions Architect) · Python and SQL.
 
 ## Contact
 
