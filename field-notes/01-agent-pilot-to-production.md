@@ -1,4 +1,4 @@
-# An agent pilot that went to production
+# An agent that went from 38 to 96 of 101 real queries
 
 **Customer:** a global news agency, already a customer. **My role:** founding sales engineer at Coactive AI.
 
