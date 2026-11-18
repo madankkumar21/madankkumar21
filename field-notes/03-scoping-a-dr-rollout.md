@@ -21,7 +21,7 @@ The bank had to recover a growing estate of applications after an outage. Disast
 - The bank signed a $3.1M deal in H1 2024, measured as total contract value (TCV).
 - It was the largest new logo in company history, by TCV and by annual recurring revenue (ARR).
 
-## What I tell the next customer
+## What I would tell the next team
 
 - Sort the inventory into repeatable and unique patterns before you estimate. The estimate for a repeatable pattern applies to every application that uses it.
 - Estimate effort per integration type, such as Ansible, Bash or ServiceNow.

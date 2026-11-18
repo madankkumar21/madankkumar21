@@ -1,6 +1,6 @@
-# A 21.5% precision complaint, solved by thresholds
+# One threshold cannot fit every category
 
-**Customer:** a global entertainment company. **My role:** founding sales engineer at Coactive AI.
+**Setting:** video tagging for a global entertainment company. **My role:** founding sales engineer at Coactive AI.
 
 ## Situation
 
@@ -28,7 +28,7 @@ Our platform tags video frames: objects, emotions, gestures and more. Each tag h
 - F1 is one score that combines precision and recall. With thresholds tuned to the new model, F1 came back to 0.93–0.99 across 199 videos.
 - I wrote both cases up as a per-category root-cause guide.
 
-## What I tell the next customer
+## What I would tell the next team
 
 - Split a precision number by category before you judge the model. An average can hide a category that works well and one that does not work at all.
 - Look at the score distribution. When scores bunch in a narrow band, set thresholds per tag.

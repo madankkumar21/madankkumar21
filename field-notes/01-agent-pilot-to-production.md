@@ -1,6 +1,6 @@
 # An agent that went from 38 to 96 of 101 real queries
 
-**Customer:** a global news agency, already a customer. **My role:** founding sales engineer at Coactive AI.
+**Setting:** archive search at a global news agency. **My role:** founding sales engineer at Coactive AI.
 
 ## Situation
 
@@ -21,9 +21,8 @@ The customer already ran semantic search in production on their archive. Semanti
 ## Result
 
 - Agentic search went to production. It was equal or better on 70% of queries, and 2.2x more precise on archive research.
-- I then designed the conversion measurement for an upsell.
 
-## What I tell the next customer
+## What I would tell the next team
 
 - Fix the success criteria before the pilot. Without them, the pilot result does not answer a question that anyone asked.
 - Treat a low first score as a diagnosis task. Read the failures before you judge the agent.

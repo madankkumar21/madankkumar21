@@ -1,37 +1,31 @@
 # Madan Kumar
 
-**I show buyers how to test AI agents on their own data before they sign, and I design agents that pass the test.**
+**Notes and open tools on testing AI agents: how to set pass criteria, measure the results, and build agents that meet them.**
 
-I am a founding sales engineer for AI and data platforms. I was the founding or early sales engineer at four startups: Coactive AI (multimodal AI), Cutover (runbook orchestration), Imply (real-time analytics on Druid) and Alluxio (data orchestration). Before that, I was a big data consultant at Teradata. I work from Philadelphia and New York.
+For about ten years I was an early sales engineer at AI and data startups. Most of that work was running evaluations with teams on their own data. This page collects what I learned from it: field notes from real evaluations, small open builds that each test one question, and the agent design practices I follow. The builds use public or synthetic data and are MIT licensed. Corrections and counter-examples are welcome.
 
-| Result | Detail |
-|---|---|
-| **$3.1M** | Largest new logo in Cutover's history: a private bank's disaster-recovery rollout |
-| **83%** | Share of North America new-logo revenue I contributed to at Cutover, FY21–23 |
-| **38 → 96 of 101** | Real customer queries that an agentic search pilot answered before and after three instruction changes I made. It was 2.2x more precise on archive research. |
-| **SE of the Year** | Cutover, FY22 and FY23 |
+Background: Coactive AI, Cutover, Imply, Alluxio and Teradata.
 
 ## Field notes
 
-These are short case studies from customer work, with customer names removed. Each one covers the situation, what I measured, what I decided, the result, and what I tell the next customer.
+Lessons from real evaluations, with company names removed. Each note covers the situation, what I measured, what I decided, the result, and what I would tell the next team.
 
 1. [An agent that went from 38 to 96 of 101 real queries](https://github.com/madankkumar21/madankkumar21/blob/main/field-notes/01-agent-pilot-to-production.md). One failure returned wrong results that looked right.
-2. [A 21.5% precision complaint, solved by thresholds](https://github.com/madankkumar21/madankkumar21/blob/main/field-notes/02-one-threshold-cannot-fit-all.md). The average hid categories that ranged from 0% to 100%.
-3. [Scoping a $3.1M disaster-recovery rollout](https://github.com/madankkumar21/madankkumar21/blob/main/field-notes/03-scoping-a-dr-rollout.md). I turned an application inventory into a three-year plan and the company's first services contract.
+2. [One threshold cannot fit every category](https://github.com/madankkumar21/madankkumar21/blob/main/field-notes/02-one-threshold-cannot-fit-all.md). An average precision of 21.5% hid categories that ranged from 0% to 100%.
 
 ## Builds
 
-| Repo | What it shows a buyer |
+| Repo | What it explores |
 |---|---|
-| [video-eval-uncertainty](https://github.com/madankkumar21/video-eval-uncertainty) | I check what a benchmark score measures before I trust it. On a video counting task, three models scored 44–52% with 8 frames and 38–43% with no frames. A rule that always answers "3" scored 41%. I scored 8 of 20 from the same frames. Write-up: [Ask for the no-video score](https://github.com/madankkumar21/video-eval-uncertainty/blob/main/docs/posts/buyer-post.md). |
-| [durable-eval-temporal](https://github.com/madankkumar21/durable-eval-temporal) | I test infrastructure the way a customer would before they adopt it. A model-eval harness on Temporal, measured against a plain loop through crashes, hung calls, human approval and deploys in the middle of a run. |
-| [bookly-support-agent](https://github.com/madankkumar21/bookly-support-agent) | I design agents that a business can trust with money. The model talks, code owns the refund rules, and the customer confirms. 0 wrong refunds in 80 test conversations. |
-| [inference-poc](https://github.com/madankkumar21/inference-poc) | I measure a model-serving stack before I advise on one. A 48-hour inference proof of concept on one GPU. Storing the model weights in 8 bits (FP8 quantization) gave 1.5–1.7x throughput at 1–32 concurrent requests. Reusing a shared prompt prefix (prefix caching) cut the server's wait before the first token from 1,238 ms to 44 ms. |
-| [agent-ready-apollo](https://github.com/madankkumar21/agent-ready-apollo) | I test a vendor's claim the way a customer would. One agent task over three ways to give an agent API access, with nine behavior claims checked. For one agent and one task, a hand-built tool matched the graph. |
+| [video-eval-uncertainty](https://github.com/madankkumar21/video-eval-uncertainty) | What a video benchmark score measures. On a counting task, three models scored 44–52% with 8 frames and 38–43% with no frames. A rule that always answers "3" scored 41%. A person scored 8 of 20 from the same frames. Write-up: [Ask for the no-video score](https://github.com/madankkumar21/video-eval-uncertainty/blob/main/docs/posts/buyer-post.md). |
+| [durable-eval-temporal](https://github.com/madankkumar21/durable-eval-temporal) | An eval harness that keeps going through failures. It runs on Temporal and is compared with a plain loop through crashes, hung calls, human approval and deploys in the middle of a run. |
+| [bookly-support-agent](https://github.com/madankkumar21/bookly-support-agent) | A support agent that handles money safely. The model talks, code owns the refund rules, and the customer confirms. 0 wrong refunds in 80 test conversations. |
+| [inference-poc](https://github.com/madankkumar21/inference-poc) | A 48-hour model-serving test on one GPU. Storing the model weights in 8 bits (FP8 quantization) gave 1.5–1.7x throughput at 1–32 concurrent requests. Reusing a shared prompt prefix (prefix caching) cut the server's wait before the first token from 1,238 ms to 44 ms. |
+| [agent-ready-apollo](https://github.com/madankkumar21/agent-ready-apollo) | Three ways to give an agent API access, with nine behavior claims checked. For one agent and one task, a hand-built tool matched the graph layer. |
 
 ## Agent design practices
 
-These are the rules I follow when I design an agent that a business can trust. Each rule links to the build or field note that shows it, and the list will change as I learn.
+These are the rules I follow when I design an agent that people can trust. Each rule links to the build or note that shows it. The list will change as I learn, and I welcome counter-examples.
 
 - **The model talks, and code owns the rules.** In [bookly-support-agent](https://github.com/madankkumar21/bookly-support-agent), code owns the refund rules and the customer confirms each refund. The agent made 0 wrong refunds in 80 test conversations.
 - **Split tools by risk.** Proposing a change and applying it are separate operations with separate permissions. The agent gets only the safe operation, and a person applies the change. In [agent-ready-apollo](https://github.com/madankkumar21/agent-ready-apollo), the router refused the agent's direct call to apply a budget move.
@@ -40,14 +34,13 @@ These are the rules I follow when I design an agent that a business can trust. E
 - **Check the AI grader against people before you trust its grades.** In [field note 01](https://github.com/madankkumar21/madankkumar21/blob/main/field-notes/01-agent-pilot-to-production.md), a blind AI grader agreed with human reviewers 97% of the time.
 - **Test the agent through failures as well as clean runs.** [durable-eval-temporal](https://github.com/madankkumar21/durable-eval-temporal) runs the test through crashes, hung calls, human approval and deploys in the middle of a run.
 
-## How I run a deal
+## How I run an evaluation
 
-- **Qualify before I build.** Sales engineering (SE) effort grows in tiers. A custom demo needs a named owner and date for the next decision. A pilot needs the customer's data in hand and success criteria in writing.
-- **Agree on the win before the pilot.** I fix the success criteria with the buyer before the first run, so the result answers a question that the buyer already asked.
-- **Measure the base rate before I accept a precision target.** The base rate is how often the target class occurs in the data. Some targets are out of reach for any vendor at that rate, and I find that out first.
-- **Evaluate on the customer's data, graded on the customer's labels.** A public benchmark does not tell a buyer how the system works on their content.
+- **Agree on the pass criteria before the first run.** Write them down with the people who will use the result. Then the result answers a question that they already asked.
+- **Measure the base rate before you accept a precision target.** The base rate is how often the target class occurs in the data. At a low base rate, some targets are out of reach for any system.
+- **Evaluate on your own data, graded on your own labels.** A public benchmark does not tell you how a system works on your content.
 - **Decide where human review stays.** The agent does the repeatable work. Publishing, refunds and other steps that cannot be undone need a person's approval.
-- **Turn field findings into product work.** Each failure I diagnose becomes a runbook for the next customer or a backlog item for product.
+- **Turn each failure into a check.** A failure that I diagnose becomes a step that the next evaluation runs first.
 
 ## What I work with
 
@@ -55,4 +48,4 @@ Agents and evals (Claude Code, MCP servers, LLM and VLM judges, confidence inter
 
 ## Contact
 
-[LinkedIn](https://www.linkedin.com/in/madan-kumar-a7679a74) · madan.k.kumar21@gmail.com · Resume on request
+[LinkedIn](https://www.linkedin.com/in/madan-kumar-a7679a74) · madan.k.kumar21@gmail.com · Questions and corrections are welcome.
